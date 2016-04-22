@@ -2,41 +2,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:orientation="vertical">
 
-    <ImageView android:src="@drawable/logo"
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_marginTop="26dp"
         android:layout_height="72dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="26dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_marginTop="26dp"
+        android:src="@drawable/logo" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="44dp"
         android:layout_marginLeft="44dp"
+        android:layout_marginRight="44dp"
         android:orientation="vertical">
 
         <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Facebook"
-            android:padding="5dp"
-            android:textColor="@android:color/white"
             android:background="#3B5998"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <Button
-            android:layout_weight="1"
-            android:text="Google"
             android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:textColor="@android:color/white"
-            android:background="#D34836"
+            android:text="Facebook"
+            android:textColor="@android:color/white" />
+        <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="#D34836"
+            android:padding="5dp"
+            android:text="Google"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 
@@ -44,14 +45,14 @@
     <com.truizlop.fabreveallayout.FABRevealLayout
         android:id="@+id/fab_reveal_layout"
         android:layout_width="match_parent"
-        android:layout_height="400dp">
+        android:layout_height="400dp"
+        android:layout_marginTop="45dp">
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            app:backgroundTint="@color/colorPrimary"
-            android:src="@drawable/ic_menu_send" />
+            android:src="@drawable/ic_menu_send"
+            app:backgroundTint="@color/colorPrimary" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -60,17 +61,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_centerInParent="true">
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="32dp"
-                    android:layout_marginTop="16dp"
-                    android:orientation="vertical"
-                    android:layout_centerInParent="true">
+                    android:orientation="vertical">
 
 
                     <com.rengwuxian.materialedittext.MaterialEditText
@@ -78,9 +78,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Email"
+                        android:inputType="textEmailAddress"
                         app:met_iconLeft="@drawable/email"
-                        app:met_iconPadding="0dp"
-                        android:inputType="textEmailAddress" />
+                        app:met_iconPadding="0dp" />
 
                     <com.rengwuxian.materialedittext.MaterialEditText
                         android:id="@+id/et_login_passwd"
@@ -93,12 +93,12 @@
 
 
                     <android.support.v7.widget.AppCompatButton
-                        style="@style/Widget.AppCompat.Button.Colored"
                         android:id="@+id/btn_login"
+                        style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_width="fill_parent"
                         android:layout_height="64dp"
-                        android:layout_marginTop="24dp"
                         android:layout_marginBottom="24dp"
+                        android:layout_marginTop="24dp"
                         android:padding="12dp"
                         android:text="Login"/>
                 </LinearLayout>
@@ -115,17 +115,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
+                android:layout_marginTop="16dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:text="Welcome"
                     android:gravity="left"
+                    android:text="Welcome"
                     android:textSize="16dip"/>
 
                 <com.rengwuxian.materialedittext.MaterialEditText
@@ -133,9 +133,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Name"
+                    android:inputType="textPersonName"
                     app:met_iconLeft="@drawable/username"
                     app:met_iconPadding="0dp"
-                    android:inputType="textPersonName"
                     app:met_maxCharacters="5" />
 
 
@@ -144,9 +144,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
+                    android:inputType="textEmailAddress"
                     app:met_iconLeft="@drawable/email"
                     app:met_iconPadding="0dp"
-                    android:inputType="textEmailAddress"
                     app:met_maxCharacters="5" />
 
                 <com.rengwuxian.materialedittext.MaterialEditText
@@ -161,12 +161,12 @@
 
                 <!-- Signup Button -->
                 <android.support.v7.widget.AppCompatButton
-                    style="@style/Widget.AppCompat.Button"
                     android:id="@+id/btn_signup"
+                    style="@style/Widget.AppCompat.Button"
                     android:layout_width="fill_parent"
                     android:layout_height="64dp"
-                    android:layout_marginTop="12dp"
                     android:layout_marginBottom="12dp"
+                    android:layout_marginTop="12dp"
                     android:padding="12dp"
                     android:text="Create Account"/>
 
