@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".views.UploadActivity"
+    tools:showIn="@layout/activity_upload">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:hint="Price" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Title" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/spinner1"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:background="@color/background"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/spinnerCondition"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:background="@color/background"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="2"
+                android:paddingBottom="8dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_gravity="center|left"
+                android:text="Show advanced details" />
+
+            <CheckBox
+                android:id="@+id/ShowAdvCheckbox"
+                style="@style/AppTheme.AppBarOverlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:onClick="onShowAdvClicked" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/advancedLayout"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Address" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_weight="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/et_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:hint="Code" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/et_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="City" />
+                </android.support.design.widget.TextInputLayout>
+
+
+            </LinearLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="City" />
+            </android.support.design.widget.TextInputLayout>
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_post"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/et_desc"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorAccent"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="48dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="Submit"
+            android:textColor="@android:color/white"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>
