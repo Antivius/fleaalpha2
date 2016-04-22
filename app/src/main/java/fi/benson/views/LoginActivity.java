@@ -34,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
 
         fabRevealLayout = (FABRevealLayout) findViewById(R.id.fab_reveal_layout);
         configureFABReveal(fabRevealLayout);
+
+        initUi();
     }
 
 
@@ -125,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
         user.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {
                 if (e == null) {
-                    signIn(email, passwd);
+                    signIn(name, passwd);
                 } else {
                     Toast.makeText(getApplicationContext(), "Baad", Toast.LENGTH_SHORT).show();
                 }
@@ -134,8 +136,8 @@ public class LoginActivity extends AppCompatActivity {
         showDialog();
     }
 
-    public void signIn(String email, String passwd){
-        ParseUser.logInInBackground(email, passwd, new LogInCallback() {
+    public void signIn(String name, String passwd) {
+        ParseUser.logInInBackground(name, passwd, new LogInCallback() {
             public void done(ParseUser user, ParseException e) {
                 if (user != null) {
 

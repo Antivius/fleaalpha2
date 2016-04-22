@@ -22,6 +22,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.parse.ParseUser;
+
 import fi.benson.R;
 import fi.benson.adapters.PagesAdapter;
 import fi.benson.camera.CameraActivity;
@@ -33,10 +35,14 @@ public class MainActivity extends AppCompatActivity
     private static final int REQUEST_CAMERA            = 110;
     private static final int REQUEST_CAMERA_PERMISSION = 120;
 
+    private static ParseUser currentUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        currentUser = ParseUser.getCurrentUser();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -46,7 +52,14 @@ public class MainActivity extends AppCompatActivity
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    requestForCameraPermission();
+
+                    if (currentUser != null) {
+                        requestForCameraPermission();
+                    } else {
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
+
                 }
             });
         }

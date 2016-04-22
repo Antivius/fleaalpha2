@@ -60,7 +60,12 @@ public class Browse extends Fragment {
 
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        posts.clear();
+        loadData();
+    }
 
     public void loadData() {
 
@@ -86,29 +91,7 @@ public class Browse extends Fragment {
 
     }
 
-    public void loadMoreData(int limit) {
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Post");
-        query.setLimit(limit).orderByDescending("createdAt");
-
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null){
-                    for (int i = 0; i < objects.size(); i++){
-                        ParseObject object = objects.get(i);
-                        Posts post = new Posts();
-                        post.setImageUrl(object.getParseFile("image").getUrl());
-                        posts.add(post);
-                    }
-                }
-
-                postAdapter.notifyDataSetChanged();
-            }
-        });
-
-
-    }
 
 
 }

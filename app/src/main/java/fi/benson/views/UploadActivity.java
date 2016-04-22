@@ -23,6 +23,7 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
@@ -34,28 +35,27 @@ import fi.benson.camera.ImageUtility;
 
 public class UploadActivity extends AppCompatActivity {
 
+    EditText editText_title, editText_desc, editText_price;
+    Button submit;
     private ImageView imageView;
     private Point     mSize;
     private Bitmap    bitmap;
-
     private  LinearLayout addresslLayout;
-    EditText editText_title, editText_desc, editText_price;
-    Button   submit;
-
     private  String imageUrl;
     private  String title;
     private  String desc;
     private  String category = "General";
     private  String condition = "Good";
     private  String address = "my address 123";
-    private  String sellerId = "XOXOX";
-    private  String sellerName = "Benny";
+    private String sellerId;
+    private String sellerName;
     private  String channel;
     private  boolean sold = false;
     private  double latitude = 60.45481499999999;
     private  double longitude = 22.288123333333335;
 
     private int i = -1;
+    private ParseUser currentUser;
 
 
 
@@ -63,6 +63,10 @@ public class UploadActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
+
+        currentUser = ParseUser.getCurrentUser();
+        sellerId = currentUser.getObjectId();
+        sellerName = currentUser.getUsername();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -213,7 +217,7 @@ public class UploadActivity extends AppCompatActivity {
                     @Override
                     public void done(ParseException e) {
                         if (e == null){
-                           finish();
+
                         }else {
                             Toast.makeText(UploadActivity.this, "Error:" + e.getMessage(),
                                     Toast.LENGTH_LONG).show();
@@ -226,16 +230,20 @@ public class UploadActivity extends AppCompatActivity {
 
     public void showDialog(){
         final SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-        pDialog.setTitleText("Signing You Up");
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#006767"));
+        pDialog.setTitleText("Saving your post");
         pDialog.setCancelable(false);
         pDialog.show();
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
-                    public void run() {pDialog.dismiss();
+                    public void run() {
+                        pDialog.dismiss();
+                        finish();
+
                     }
                 }, 3000);
+
     }
 
 
