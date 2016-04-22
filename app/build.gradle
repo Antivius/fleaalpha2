@@ -34,5 +34,6 @@ dependencies {
     compile 'cn.pedant.sweetalert:library:1.3'
     compile 'com.truizlop.fabreveallayout:library:1.0.0'
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
+    compile 'com.github.glomadrian:MaterialAnimatedSwitch:1.1@aar'
 
 }

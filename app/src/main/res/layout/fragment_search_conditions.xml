@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="5dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="2"
+            android:paddingBottom="8dp"
+            android:text="New"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch
+            android:id="@+id/pinNew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ball_press_color="@color/colorPrimary"
+            app:ball_release_color="@color/register"
+            app:base_press_color="@color/register"
+            app:base_release_color="@color/colorPrimary"
+            app:icon_press="@drawable/check"
+            app:icon_release="@drawable/cross" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="2"
+            android:paddingBottom="8dp"
+            android:text="Almost New"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch
+            android:id="@+id/pinAlmostNew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ball_press_color="@color/colorPrimary"
+            app:ball_release_color="@color/register"
+            app:base_press_color="@color/register"
+            app:base_release_color="@color/colorPrimary"
+            app:icon_press="@drawable/check"
+            app:icon_release="@drawable/cross" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="2"
+            android:paddingBottom="8dp"
+            android:text="Good"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch
+            android:id="@+id/pinGood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ball_press_color="@color/colorPrimary"
+            app:ball_release_color="@color/register"
+            app:base_press_color="@color/register"
+            app:base_release_color="@color/colorPrimary"
+            app:icon_press="@drawable/check"
+            app:icon_release="@drawable/cross" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="2"
+            android:paddingBottom="8dp"
+            android:text="Satisfactory"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch
+            android:id="@+id/pinSatisfactory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ball_press_color="@color/colorPrimary"
+            app:ball_release_color="@color/register"
+            app:base_press_color="@color/register"
+            app:base_release_color="@color/colorPrimary"
+            app:icon_press="@drawable/check"
+            app:icon_release="@drawable/cross" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="2"
+            android:paddingBottom="8dp"
+            android:text="Poor"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch
+            android:id="@+id/pinPoor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ball_press_color="@color/colorPrimary"
+            app:ball_release_color="@color/register"
+            app:base_press_color="@color/register"
+            app:base_release_color="@color/colorPrimary"
+            app:icon_press="@drawable/check"
+            app:icon_release="@drawable/cross" />
+    </LinearLayout>
+
+
+</LinearLayout>
