@@ -1,9 +1,23 @@
 package fi.benson.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by bkamau on 4/22/16.
  */
-public class Posts {
+public class Posts implements Parcelable {
+    public static final Creator<Posts> CREATOR = new Creator<Posts>() {
+        @Override
+        public Posts createFromParcel(Parcel in) {
+            return new Posts(in);
+        }
+
+        @Override
+        public Posts[] newArray(int size) {
+            return new Posts[size];
+        }
+    };
     private  String imageUrl;
     private  String title;
     private  String desc;
@@ -17,6 +31,25 @@ public class Posts {
     private  double latitude;
     private  double longitude;
 
+    public Posts(Parcel in) {
+        imageUrl = in.readString();
+        title = in.readString();
+        desc = in.readString();
+        category = in.readString();
+        condition = in.readString();
+        address = in.readString();
+        sellerId = in.readString();
+        sellerName = in.readString();
+        channel = in.readString();
+        sold = in.readByte() != 0;
+        latitude = in.readDouble();
+        longitude = in.readDouble();
+    }
+
+
+    public Posts() {
+
+    }
 
     public String getImageUrl() {
         return imageUrl;
@@ -112,5 +145,16 @@ public class Posts {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeStringArray(new String[]{this.imageUrl});
+
     }
 }
