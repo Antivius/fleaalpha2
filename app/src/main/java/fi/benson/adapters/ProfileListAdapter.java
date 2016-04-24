@@ -69,7 +69,7 @@ public class ProfileListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         Posts item = items.get(position);
         PostViewHolder vh = (PostViewHolder) holder;
 
-        if (item.setSold(true)){
+        if (item.isSold()){
             vh.marksold.setImageResource(R.drawable.ic_sold);
         }
         vh.titleView.setText(item.getTitle());

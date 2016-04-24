@@ -76,6 +76,9 @@ public class Browse extends Fragment {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null){
+
+                    posts.clear();
+
                     for (int i = 0; i < objects.size(); i++){
                         ParseObject object = objects.get(i);
                         Posts post = new Posts();

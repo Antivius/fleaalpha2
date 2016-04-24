@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.dift.ui.SwipeToAction;
-import de.hdodenhof.circleimageview.CircleImageView;
 import fi.benson.R;
 import fi.benson.adapters.ProfileListAdapter;
 import fi.benson.models.Posts;
@@ -45,7 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
     private boolean mIsTheTitleVisible = false;
     private boolean mIsTheTitleContainerVisible = true;
 
-    private SimpleDraweeView mIvPlaceholder;
+
     private LinearLayout mLlTitleContainer;
     private FrameLayout mFlTitleContainer;
     private AppBarLayout mAblAppBar;
@@ -54,7 +53,9 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView pName;
     private TextView pTitle;
     private ImageView profImageview;
-    private CircleImageView profCircleImageViewDrawee;
+
+    private SimpleDraweeView mIvPlaceholder;
+    private SimpleDraweeView profCircleImageViewDrawee;
 
     private static ParseUser currentUser;
     private boolean noPostsReturned;
@@ -77,6 +78,7 @@ public class ProfileActivity extends AppCompatActivity {
         if (!(currentUser == null)){
             pName.setText(currentUser.getUsername());
             pTitle.setText(currentUser.getUsername());
+            profCircleImageViewDrawee.setImageURI(Uri.parse("https://scontent-arn2-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/10556482_793923947325738_2020962229505636693_n.jpg?oh=3531ea07f5a015bf590739b128c065ea&oe=57A20BC2"));
             mIvPlaceholder.setImageURI(Uri.parse("https://scontent-arn2-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/10556482_793923947325738_2020962229505636693_n.jpg?oh=3531ea07f5a015bf590739b128c065ea&oe=57A20BC2"));
 
         }else {
@@ -105,6 +107,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         pTitle = (TextView) findViewById(R.id.profileTile);
         pName = (TextView) findViewById(R.id.ProfileName);
+        profCircleImageViewDrawee = (SimpleDraweeView) findViewById(R.id.profileCircleImage);
         mIvPlaceholder = (SimpleDraweeView) findViewById(R.id.main_iv_placeholder);
         mLlTitleContainer = (LinearLayout) findViewById(R.id.main_ll_title_container);
         mFlTitleContainer = (FrameLayout) findViewById(R.id.main_fl_title);

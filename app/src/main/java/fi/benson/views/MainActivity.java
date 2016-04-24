@@ -21,7 +21,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.parse.ParseUser;
 
 import fi.benson.R;
@@ -37,12 +40,22 @@ public class MainActivity extends AppCompatActivity
 
     private static ParseUser currentUser;
 
+    private SimpleDraweeView draweeView;
+    private TextView drawerName, drawerEmail;
+    private LinearLayout linearLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         currentUser = ParseUser.getCurrentUser();
+
+
+
+
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -75,6 +88,19 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
+
+            View hView =  navigationView.getHeaderView(0);
+
+            draweeView = (SimpleDraweeView) hView.findViewById(R.id.drawerImage);
+            drawerName = (TextView) hView.findViewById(R.id.drawerName);
+            drawerEmail = (TextView) hView.findViewById(R.id.drawerEmail);
+
+            if (!(currentUser == null)){
+                drawerName.setText(currentUser.getUsername());
+                drawerEmail.setText(currentUser.getEmail());
+                draweeView.setImageURI(Uri.parse("https://scontent-arn2-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/10556482_793923947325738_2020962229505636693_n.jpg?oh=3531ea07f5a015bf590739b128c065ea&oe=57A20BC2"));
+
+            }
         }
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);

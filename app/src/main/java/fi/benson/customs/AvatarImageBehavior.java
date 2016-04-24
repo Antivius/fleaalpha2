@@ -6,12 +6,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+import com.facebook.drawee.view.SimpleDraweeView;
+
 import fi.benson.R;
 
 
 @SuppressWarnings("unused")
-public class AvatarImageBehavior extends CoordinatorLayout.Behavior<CircleImageView> {
+public class AvatarImageBehavior extends CoordinatorLayout.Behavior<SimpleDraweeView> {
 
     private final static float MIN_AVATAR_PERCENTAGE_SIZE = 0.3f;
     private final static int EXTRA_FINAL_AVATAR_PADDING = 80;
@@ -41,13 +42,12 @@ public class AvatarImageBehavior extends CoordinatorLayout.Behavior<CircleImageV
     }
 
 
-    @Override
-    public boolean layoutDependsOn(CoordinatorLayout parent, CircleImageView child, View dependency) {
+    public boolean layoutDependsOn(CoordinatorLayout parent, SimpleDraweeView child, View dependency) {
         return dependency instanceof Toolbar;
     }
 
-    @Override
-    public boolean onDependentViewChanged(CoordinatorLayout parent, CircleImageView child, View dependency) {
+
+    public boolean onDependentViewChanged(CoordinatorLayout parent, SimpleDraweeView child, View dependency) {
 
         shouldInitProperties(child, dependency);
 
@@ -79,7 +79,7 @@ public class AvatarImageBehavior extends CoordinatorLayout.Behavior<CircleImageV
      * @param child
      * @param dependency ToolBar
      */
-    private void shouldInitProperties(CircleImageView child, View dependency) {
+    private void shouldInitProperties(SimpleDraweeView child, View dependency) {
 
         if (mStartYPosition == 0)
             mStartYPosition = (int) (child.getY() + (child.getHeight() / 2));

@@ -13,6 +13,15 @@ public class Posts  {
     private  String condition;
     private  String address;
     private  String sellerId;
+
+    public boolean isSold() {
+        return sold;
+    }
+
+    public void setSold(boolean sold) {
+        this.sold = sold;
+    }
+
     private  String sellerName;
     private  String channel;
     private  boolean sold;
@@ -98,14 +107,7 @@ public class Posts  {
         this.channel = channel;
     }
 
-    public boolean isSold() {
-        return sold;
-    }
 
-    public boolean setSold(boolean sold) {
-        this.sold = sold;
-        return sold;
-    }
 
     public double getLatitude() {
         return latitude;
