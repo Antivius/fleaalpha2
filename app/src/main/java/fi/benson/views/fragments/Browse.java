@@ -82,6 +82,16 @@ public class Browse extends Fragment {
                         ParseObject object = objects.get(i);
                         Posts post = new Posts();
                         post.setImageUrl(object.getParseFile("image").getUrl());
+                        post.setPrice(object.getNumber("price").toString());
+                        post.setTitle(object.getString("title"));
+                        post.setDesc(object.getString("desc"));
+                        post.setCategory(object.getString("category"));
+                        post.setCondition(object.getString("condition"));
+                        post.setAddress(object.getString("address"));
+                        post.setSellerId(object.getString("sellerId"));
+                        post.setSellerName(object.getString("sellerName"));
+                        post.setChannel(object.getString("channel"));
+                        post.setCreatedAt(String.valueOf(object.getCreatedAt().toLocaleString()));
                         posts.add(post);
                     }
                 }

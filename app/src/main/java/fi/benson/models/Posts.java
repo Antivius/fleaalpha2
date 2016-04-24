@@ -5,7 +5,16 @@ package fi.benson.models;
  */
 public class Posts  {
 
-    private String objectId;
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    private  String price;
+    private  String objectId;
     private  String imageUrl;
     private  String title;
     private  String desc;
@@ -13,6 +22,23 @@ public class Posts  {
     private  String condition;
     private  String address;
     private  String sellerId;
+    private  String sellerName;
+    private  String channel;
+    private  String   createdAt;
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    private  boolean sold;
+    private  double latitude;
+    private  double longitude;
+
+
 
     public boolean isSold() {
         return sold;
@@ -22,11 +48,7 @@ public class Posts  {
         this.sold = sold;
     }
 
-    private  String sellerName;
-    private  String channel;
-    private  boolean sold;
-    private  double latitude;
-    private  double longitude;
+
 
     public String getObjectId() {
         return objectId;

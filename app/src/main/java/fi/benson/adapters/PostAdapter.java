@@ -1,6 +1,7 @@
 package fi.benson.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,10 +10,12 @@ import android.view.ViewGroup;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fi.benson.R;
 import fi.benson.models.Posts;
+import fi.benson.views.DetailActivity;
 
 
 /**
@@ -49,16 +52,50 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder  {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         //Setup Views
         public SimpleDraweeView draweeView;
+
+        List<Posts> itemPosts = new ArrayList<Posts>();
+        Context ctx;
 
 
         public ViewHolder(final View itemView, Context ctx, List<Posts> itemPosts) {
 
             super(itemView);
+            this.itemPosts = itemPosts;
+            this.ctx = ctx;
+            itemView.setOnClickListener(this);
+
+
             draweeView = (SimpleDraweeView) itemView.findViewById(R.id.placeImage);
 
+        }
+
+        @Override
+        public void onClick(View view) {
+
+            int position = getAdapterPosition();
+            Posts itemPost = this.itemPosts.get(position);
+
+            Intent intent = new Intent(this.ctx, DetailActivity.class);
+            intent.putExtra("url",      itemPost.getImageUrl());
+            intent.putExtra("title",    itemPost.getTitle());
+            intent.putExtra("price",    itemPost.getPrice());
+            intent.putExtra("desc",     itemPost.getDesc());
+            intent.putExtra("address",  itemPost.getAddress());
+            intent.putExtra("latitude", itemPost.getLatitude());
+            intent.putExtra("longitude",itemPost.getLongitude());
+            intent.putExtra("category", itemPost.getCategory());
+            intent.putExtra("created",  itemPost.getCreatedAt());
+            intent.putExtra("condition",itemPost.getCondition());
+            intent.putExtra("channel",  itemPost.getChannel());
+            intent.putExtra("sellerId", itemPost.getSellerId());
+            intent.putExtra("isSold",   itemPost.isSold());
+
+
+
+            ctx.startActivity(intent);
         }
     }
 
