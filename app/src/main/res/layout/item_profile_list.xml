@@ -58,6 +58,7 @@
             android:textStyle="bold" />
 
         <ImageView
+            android:id="@+id/deleteImageview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -95,6 +96,7 @@
             android:layout_toRightOf="@+id/image"
             android:textColor="@color/black"
             android:singleLine="true"
+            android:paddingLeft="16dp"
             android:textSize="16dp"
             android:textStyle="bold" />
 
@@ -103,9 +105,22 @@
             android:layout_below="@+id/title"
             android:layout_alignLeft="@+id/title"
             android:textColor="@color/black"
+            android:paddingLeft="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14dp" />
+
+        <ImageView
+            android:id="@+id/marksold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="4dp"
+            android:src="@drawable/ic_delete"/>
+
+
     </RelativeLayout>
 
 

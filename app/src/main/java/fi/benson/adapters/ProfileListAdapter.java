@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -27,6 +28,7 @@ public class ProfileListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public class PostViewHolder extends SwipeToAction.ViewHolder<Posts> {
         public TextView titleView;
         public TextView authorView;
+        public ImageView marksold;
         public SimpleDraweeView imageView;
 
         public PostViewHolder(View v) {
@@ -34,6 +36,7 @@ public class ProfileListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             titleView = (TextView) v.findViewById(R.id.title);
             authorView = (TextView) v.findViewById(R.id.author);
+            marksold   = (ImageView) v.findViewById(R.id.marksold);
             imageView = (SimpleDraweeView) v.findViewById(R.id.image);
         }
     }
@@ -65,6 +68,10 @@ public class ProfileListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Posts item = items.get(position);
         PostViewHolder vh = (PostViewHolder) holder;
+
+        if (item.setSold(true)){
+            vh.marksold.setImageResource(R.drawable.ic_sold);
+        }
         vh.titleView.setText(item.getTitle());
         vh.authorView.setText(item.getDesc());
         vh.imageView.setImageURI(Uri.parse(item.getImageUrl()));

@@ -213,6 +213,7 @@ public class UploadActivity extends AppCompatActivity {
                 object.put("point",     point);
                 object.put("sold",      sold);
 
+
                 object.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {

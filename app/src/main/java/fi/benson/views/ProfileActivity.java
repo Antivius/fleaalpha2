@@ -1,9 +1,12 @@
 package fi.benson.views;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +18,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -25,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.dift.ui.SwipeToAction;
+import de.hdodenhof.circleimageview.CircleImageView;
 import fi.benson.R;
 import fi.benson.adapters.ProfileListAdapter;
 import fi.benson.models.Posts;
@@ -39,7 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
     private boolean mIsTheTitleVisible = false;
     private boolean mIsTheTitleContainerVisible = true;
 
-    private ImageView mIvPlaceholder;
+    private SimpleDraweeView mIvPlaceholder;
     private LinearLayout mLlTitleContainer;
     private FrameLayout mFlTitleContainer;
     private AppBarLayout mAblAppBar;
@@ -47,8 +53,11 @@ public class ProfileActivity extends AppCompatActivity {
     private Toolbar mTbToolbar;
     private TextView pName;
     private TextView pTitle;
+    private ImageView profImageview;
+    private CircleImageView profCircleImageViewDrawee;
 
     private static ParseUser currentUser;
+    private boolean noPostsReturned;
 
 
     private RecyclerView recyclerView;
@@ -61,13 +70,15 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        currentUser = ParseUser.getCurrentUser();
 
         initUi();
 
-        currentUser = ParseUser.getCurrentUser();
         if (!(currentUser == null)){
             pName.setText(currentUser.getUsername());
             pTitle.setText(currentUser.getUsername());
+            mIvPlaceholder.setImageURI(Uri.parse("https://scontent-arn2-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/10556482_793923947325738_2020962229505636693_n.jpg?oh=3531ea07f5a015bf590739b128c065ea&oe=57A20BC2"));
+
         }else {
             Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
             startActivity(intent);
@@ -94,12 +105,13 @@ public class ProfileActivity extends AppCompatActivity {
 
         pTitle = (TextView) findViewById(R.id.profileTile);
         pName = (TextView) findViewById(R.id.ProfileName);
-        mIvPlaceholder = (ImageView) findViewById(R.id.main_iv_placeholder);
+        mIvPlaceholder = (SimpleDraweeView) findViewById(R.id.main_iv_placeholder);
         mLlTitleContainer = (LinearLayout) findViewById(R.id.main_ll_title_container);
         mFlTitleContainer = (FrameLayout) findViewById(R.id.main_fl_title);
         mAblAppBar = (AppBarLayout) findViewById(R.id.main_abl_app_bar);
         mTvToolbarTitle = (TextView) findViewById(R.id.profileTile);
         mTbToolbar = (Toolbar) findViewById(R.id.main_tb_toolbar);
+
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
@@ -114,13 +126,21 @@ public class ProfileActivity extends AppCompatActivity {
 
 
             @Override
-            public boolean swipeLeft(Posts itemData) {
-                return false;
+            public boolean swipeLeft(final Posts itemData) {
+
+                markAsSold(itemData.getObjectId());
+                displaySnackbar(itemData.getObjectId() + " sold", "Undo", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        markAsNotSold(itemData.getObjectId());
+                    }
+                });
+                return true;
             }
 
             @Override
             public boolean swipeRight(Posts itemData) {
-                return false;
+                return true;
             }
 
             @Override
@@ -137,33 +157,6 @@ public class ProfileActivity extends AppCompatActivity {
         loadData();
 
     }
-
-    public void loadData() {
-
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Post");
-        query.whereMatches("title", "hs");
-
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null){
-                    for (int i = 0; i < objects.size(); i++){
-                        ParseObject object = objects.get(i);
-                        Posts post = new Posts();
-                        post.setImageUrl(object.getParseFile("image").getUrl());
-                        post.setTitle(object.getString("title"));
-                        post.setDesc(object.getString("desc"));
-                        posts.add(post);
-                    }
-                }
-
-                adapter.notifyDataSetChanged();
-            }
-        });
-
-
-    }
-
 
     // Set up automatic sliding animation
     private void initParallaxValues() {
@@ -220,4 +213,89 @@ public class ProfileActivity extends AppCompatActivity {
         alphaAnimation.setFillAfter(true);
         v.startAnimation(alphaAnimation);
     }
+
+
+
+
+    public void loadData() {
+
+        if (!(currentUser == null)){
+
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Post");
+            query.whereEqualTo("sellerId", currentUser.getObjectId());
+
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> objects, ParseException e) {
+                    if (e == null){
+                        for (int i = 0; i < objects.size(); i++){
+                            ParseObject object = objects.get(i);
+                            Posts post = new Posts();
+                            post.setImageUrl(object.getParseFile("image").getUrl());
+                            post.setTitle(object.getString("title"));
+                            post.setDesc(object.getString("desc"));
+                            post.setObjectId(object.getObjectId());
+                            posts.add(post);
+                        }
+                    }else {
+                        noPostsReturned = true;
+                    }
+
+
+                    adapter.notifyDataSetChanged();
+                }
+            });
+        }else {
+            displaySnackbar("Your items will appear here",null,null);
+        }
+
+
+
+    }
+
+
+
+    private void markAsSold(String objectId){
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Post");
+        // Retrieve the object by id
+        query.getInBackground(objectId, new GetCallback<ParseObject>() {
+            public void done(ParseObject post, ParseException e) {
+                if (e == null) {
+                    post.put("sold", true);
+                    post.saveInBackground();
+                }
+            }
+        });
+    }
+
+
+    private void markAsNotSold(String objectId){
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Post");
+
+        // Retrieve the object by id
+        query.getInBackground(objectId, new GetCallback<ParseObject>() {
+            public void done(ParseObject post, ParseException e) {
+                if (e == null) {
+                    post.put("sold", true);
+                    post.saveInBackground();
+                }
+            }
+        });
+    }
+
+    private void displaySnackbar(String text, String actionName, View.OnClickListener action) {
+        Snackbar snack = Snackbar.make(findViewById(android.R.id.content), text, Snackbar.LENGTH_LONG)
+                .setAction(actionName, action);
+
+        View v = snack.getView();
+        v.setBackgroundColor(getResources().getColor(R.color.register));
+        ((TextView) v.findViewById(android.support.design.R.id.snackbar_text)).setTextColor(Color.WHITE);
+        ((TextView) v.findViewById(android.support.design.R.id.snackbar_action)).setTextColor(Color.BLACK);
+
+        snack.show();
+    }
+
+
 }

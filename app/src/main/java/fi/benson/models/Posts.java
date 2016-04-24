@@ -1,23 +1,11 @@
 package fi.benson.models;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 /**
  * Created by bkamau on 4/22/16.
  */
-public class Posts implements Parcelable {
-    public static final Creator<Posts> CREATOR = new Creator<Posts>() {
-        @Override
-        public Posts createFromParcel(Parcel in) {
-            return new Posts(in);
-        }
+public class Posts  {
 
-        @Override
-        public Posts[] newArray(int size) {
-            return new Posts[size];
-        }
-    };
+    private String objectId;
     private  String imageUrl;
     private  String title;
     private  String desc;
@@ -31,26 +19,13 @@ public class Posts implements Parcelable {
     private  double latitude;
     private  double longitude;
 
-    public Posts(Parcel in) {
-        imageUrl = in.readString();
-        title = in.readString();
-        desc = in.readString();
-        category = in.readString();
-        condition = in.readString();
-        address = in.readString();
-        sellerId = in.readString();
-        sellerName = in.readString();
-        channel = in.readString();
-        sold = in.readByte() != 0;
-        latitude = in.readDouble();
-        longitude = in.readDouble();
+    public String getObjectId() {
+        return objectId;
     }
 
-
-    public Posts() {
-
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
     }
-
     public String getImageUrl() {
         return imageUrl;
     }
@@ -127,8 +102,9 @@ public class Posts implements Parcelable {
         return sold;
     }
 
-    public void setSold(boolean sold) {
+    public boolean setSold(boolean sold) {
         this.sold = sold;
+        return sold;
     }
 
     public double getLatitude() {
@@ -147,14 +123,5 @@ public class Posts implements Parcelable {
         this.longitude = longitude;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeStringArray(new String[]{this.imageUrl});
-
-    }
 }
