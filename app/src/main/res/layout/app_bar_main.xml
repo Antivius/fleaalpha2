@@ -42,10 +42,12 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
+        android:layout_width="56dp"
+        android:background="@drawable/ic_circle"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
+        android:scaleType="center"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email" />
+        android:src="@drawable/ic_camera" />
 
 </android.support.design.widget.CoordinatorLayout>

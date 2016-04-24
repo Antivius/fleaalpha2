@@ -45,7 +45,6 @@ public class Browse extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_browse, container, false);
 
 
-
         recycler = (RecyclerView) rootView.findViewById(R.id.mainRecycler);
         mStaggeredLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recycler.setItemAnimator(new DefaultItemAnimator());

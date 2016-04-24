@@ -48,6 +48,8 @@ public class Search extends Fragment {
 
     public void initUi(View view) {
 
+
+
         pinElectronic = (MaterialAnimatedSwitch) view.findViewById(R.id.pinElectronic);
         pinGameConsole = (MaterialAnimatedSwitch) view.findViewById(R.id.pinGamesConsoles);
         pinBookMusic = (MaterialAnimatedSwitch) view.findViewById(R.id.pinBooksMusic);

@@ -40,9 +40,12 @@ public class MainActivity extends AppCompatActivity
 
     private static ParseUser currentUser;
 
+    public FloatingActionButton fab;
     private SimpleDraweeView draweeView;
     private TextView drawerName, drawerEmail;
     private LinearLayout linearLayout;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,16 +54,10 @@ public class MainActivity extends AppCompatActivity
 
         currentUser = ParseUser.getCurrentUser();
 
-
-
-
-
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+         fab = (FloatingActionButton) findViewById(R.id.fab);
         if (fab != null) {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -117,10 +114,17 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+
+                if (tab.getPosition() != 0){
+                    fab.hide();
+                }else {
+                    fab.show();
+                }
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
+
 
             }
 
