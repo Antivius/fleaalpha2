@@ -1,7 +1,6 @@
 package fi.benson.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,7 +20,6 @@ import fi.benson.models.Posts;
  */
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
-    Bitmap myBitmap;
     private List<Posts> list;
     private Context context;
 

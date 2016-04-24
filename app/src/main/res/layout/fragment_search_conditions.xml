@@ -28,8 +28,8 @@
             app:ball_release_color="@color/register"
             app:base_press_color="@color/register"
             app:base_release_color="@color/colorPrimary"
-            app:icon_press="@drawable/check"
-            app:icon_release="@drawable/cross" />
+            app:icon_press="@drawable/ic_check"
+            app:icon_release="@drawable/ic_cross" />
     </LinearLayout>
 
     <LinearLayout
@@ -55,8 +55,8 @@
             app:ball_release_color="@color/register"
             app:base_press_color="@color/register"
             app:base_release_color="@color/colorPrimary"
-            app:icon_press="@drawable/check"
-            app:icon_release="@drawable/cross" />
+            app:icon_press="@drawable/ic_check"
+            app:icon_release="@drawable/ic_cross"  />
     </LinearLayout>
 
 
@@ -83,8 +83,8 @@
             app:ball_release_color="@color/register"
             app:base_press_color="@color/register"
             app:base_release_color="@color/colorPrimary"
-            app:icon_press="@drawable/check"
-            app:icon_release="@drawable/cross" />
+            app:icon_press="@drawable/ic_check"
+            app:icon_release="@drawable/ic_cross" />
     </LinearLayout>
 
 
@@ -111,8 +111,8 @@
             app:ball_release_color="@color/register"
             app:base_press_color="@color/register"
             app:base_release_color="@color/colorPrimary"
-            app:icon_press="@drawable/check"
-            app:icon_release="@drawable/cross" />
+            app:icon_press="@drawable/ic_check"
+            app:icon_release="@drawable/ic_cross" />
     </LinearLayout>
 
     <LinearLayout
@@ -138,8 +138,8 @@
             app:ball_release_color="@color/register"
             app:base_press_color="@color/register"
             app:base_release_color="@color/colorPrimary"
-            app:icon_press="@drawable/check"
-            app:icon_release="@drawable/cross" />
+            app:icon_press="@drawable/ic_check"
+            app:icon_release="@drawable/ic_cross" />
     </LinearLayout>
 
 

@@ -32,10 +32,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        fabRevealLayout = (FABRevealLayout) findViewById(R.id.fab_reveal_layout);
-        configureFABReveal(fabRevealLayout);
-
         initUi();
+
+
+
+
     }
 
 
@@ -48,6 +49,10 @@ public class LoginActivity extends AppCompatActivity {
         et_sign_passwd      = (EditText) findViewById(R.id.et_sign_passwd);
         btn_login           = (Button) findViewById(R.id.btn_login);
         btn_signup          = (Button) findViewById(R.id.btn_signup);
+
+
+        fabRevealLayout = (FABRevealLayout) findViewById(R.id.fab_reveal_layout);
+        configureFABReveal(fabRevealLayout);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,12 +70,16 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
+
+
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        prepareBackTransition(fabRevealLayout);
+
     }
 
     private void configureFABReveal(FABRevealLayout fabRevealLayout) {

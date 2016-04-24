@@ -42,13 +42,6 @@ public class Search extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_search, container, false);
         initUi(rootView);
 
-
-
-
-
-
-
-
         return rootView;
 
     }

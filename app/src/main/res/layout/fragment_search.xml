@@ -9,16 +9,7 @@
     tools:context="fi.benson.views.MainActivity">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/resltRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
 
         <LinearLayout
@@ -46,7 +37,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/search" />
+                    android:src="@drawable/ic_search" />
 
 
                 <EditText
@@ -267,7 +258,6 @@
 
         </LinearLayout>
 
-    </LinearLayout>
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
