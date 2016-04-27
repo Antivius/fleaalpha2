@@ -78,8 +78,8 @@ public class ProfileActivity extends AppCompatActivity {
         if (!(currentUser == null)){
             pName.setText(currentUser.getUsername());
             pTitle.setText(currentUser.getUsername());
-            profCircleImageViewDrawee.setImageURI(Uri.parse("https://scontent-arn2-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/10556482_793923947325738_2020962229505636693_n.jpg?oh=3531ea07f5a015bf590739b128c065ea&oe=57A20BC2"));
-            mIvPlaceholder.setImageURI(Uri.parse("https://scontent-arn2-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/10556482_793923947325738_2020962229505636693_n.jpg?oh=3531ea07f5a015bf590739b128c065ea&oe=57A20BC2"));
+            profCircleImageViewDrawee.setImageURI(Uri.parse("https://scontent-arn2-1.xx.fbcdn.net/v/l/t1.0-9/10450936_10153530497392044_420639374741255249_n.jpg?oh=1135da01b5f254290e4ce35f76230bca&oe=57B9DA3B"));
+            mIvPlaceholder.setImageURI(Uri.parse("https://scontent-arn2-1.xx.fbcdn.net/v/l/t1.0-9/10450936_10153530497392044_420639374741255249_n.jpg?oh=1135da01b5f254290e4ce35f76230bca&oe=57B9DA3B"));
 
         }else {
             Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);

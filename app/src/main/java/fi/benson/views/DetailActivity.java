@@ -1,6 +1,7 @@
 package fi.benson.views;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -25,9 +27,10 @@ import fi.benson.R;
 public class DetailActivity extends AppCompatActivity {
 
     Intent intent;
-    public SimpleDraweeView draweeView;
+    public SimpleDraweeView draweeView,sellerDrawee;
     private TextView dTextView, dPriceView, dDescView, dCategoryView, dCreatedView, dConditionView;
 
+    private TextView drawerName;
     ParseUser currentUser;
 
     @Override
@@ -36,6 +39,16 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         currentUser = ParseUser.getCurrentUser();
         initUi();
+
+
+        sellerDrawee = (SimpleDraweeView) findViewById(R.id.imageusersmall);
+        drawerName = (TextView) findViewById(R.id.textViewSellerName);
+
+        if (!(currentUser == null)){
+            drawerName.setText(currentUser.getUsername());
+            sellerDrawee.setImageURI(Uri.parse("https://scontent-arn2-1.xx.fbcdn.net/v/l/t1.0-9/10450936_10153530497392044_420639374741255249_n.jpg?oh=1135da01b5f254290e4ce35f76230bca&oe=57B9DA3B"));
+
+        }
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -48,13 +61,16 @@ public class DetailActivity extends AppCompatActivity {
                 public void onClick(View v) {
 
                     if (currentUser != null) {
-                      //  intent = new Intent(DetailActivity.this, ChatActivity.class);
-                       // intent.putExtra("channel", getIntent().getStringExtra("channel"));
-                      //  startActivity(intent);
+                        ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+                        installation.put("user",ParseUser.getCurrentUser());
+                        installation.saveInBackground();
+
+                        intent = new Intent(DetailActivity.this, ChatActivity.class);
+                        intent.putExtra("channel", getIntent().getStringExtra("channel"));startActivity(intent);
                     } else {
-                       // intent = new Intent(DetailActivity.this, LoginActivity.class);
-                      //  intent.putExtra("channel", getIntent().getStringExtra("channel"));
-                      //  startActivity(intent);
+                       intent = new Intent(DetailActivity.this, LoginActivity.class);
+                       intent.putExtra("channel", getIntent().getStringExtra("channel"));
+                       startActivity(intent);
                     }
                 }
             });
@@ -63,6 +79,7 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void initUi() {
 
         draweeView = (SimpleDraweeView) findViewById(R.id.detailImage);
@@ -79,23 +96,23 @@ public class DetailActivity extends AppCompatActivity {
 
         dTextView.setText(getIntent().getStringExtra("title"));
 
-        dPriceView.setText(getIntent().getStringExtra("price"));
+        dPriceView.setText(getIntent().getStringExtra("price") + "€");
         dPriceView.setTypeface(EasyFonts.droidSerifBold(this));
 
         dDescView.setText(getIntent().getStringExtra("desc"));
         dDescView.setTypeface(EasyFonts.droidSerifItalic(this));
 
         dCategoryView.setText(getIntent().getStringExtra("category"));
-        dCategoryView.setTypeface(EasyFonts.ostrichBlack(this));
+        dCategoryView.setTypeface(EasyFonts.droidSerifItalic(this));
 
         dConditionView.setText(getIntent().getStringExtra("condition"));
-        dConditionView.setTypeface(EasyFonts.ostrichBlack(this));
+        dConditionView.setTypeface(EasyFonts.droidSerifItalic(this));
 
         Date date = new Date();
         date.setDate((int) getIntent().getLongExtra("date", -1));
 
         dCreatedView.setText(date.toString());
-        dCreatedView.setTypeface(EasyFonts.ostrichBlack(this));
+        dCreatedView.setTypeface(EasyFonts.droidSerifItalic(this));
 
 
     }

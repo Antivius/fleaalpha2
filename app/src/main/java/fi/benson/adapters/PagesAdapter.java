@@ -11,6 +11,7 @@ import fi.benson.views.fragments.Search;
 
 /**
  * Created by bkamau on 3/7/16.
+ * on 10:58
  */
 public class PagesAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
