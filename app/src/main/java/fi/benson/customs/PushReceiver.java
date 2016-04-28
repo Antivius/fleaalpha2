@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
@@ -92,7 +93,8 @@ public class PushReceiver extends ParsePushBroadcastReceiver {
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
             builder
-                    .setSmallIcon(R.drawable.logo)
+                    .setSmallIcon(R.drawable.notification_logo)
+                    .setColor(Color.parseColor("#00796B"))
                     .setContentTitle(senderName)
                     .setContentText(message)
                     .setContentIntent(pContentIntent)
@@ -106,6 +108,8 @@ public class PushReceiver extends ParsePushBroadcastReceiver {
 
         }
     }
+
+
 
     public void showDialog(Context context){
         new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)

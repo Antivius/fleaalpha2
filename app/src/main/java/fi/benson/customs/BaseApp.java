@@ -24,7 +24,7 @@ public class BaseApp extends Application {
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("myAppId") // should correspond to APP_ID env variable
                 .addNetworkInterceptor(new ParseLogInterceptor())
-                .server("http://86.50.118.233:1319/parse/").build());
+                .server("https://fd0e5215.ngrok.io/parse/").build());
 
         ParseInstallation.getCurrentInstallation().saveInBackground();
     }

@@ -8,16 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -96,6 +93,11 @@ public class ChatActivity extends AppCompatActivity {
 
                 String data = etMessage.getText().toString();
 
+                sendAnnouncement(data);
+
+                /**
+
+
                 ParseObject message = ParseObject.create("Message");
                 message.put(Message.RECIEVER_ID_KEY, "rECIEVERiD");
                 message.put(Message.SENDER_ID_KEY, currentUser.getObjectId());
@@ -106,11 +108,11 @@ public class ChatActivity extends AppCompatActivity {
                     public void done(ParseException e) {
                         Toast.makeText(ChatActivity.this, "Successfully created message on Parse",
                                 Toast.LENGTH_SHORT).show();
-                        sendAnnouncement();
+
                         refreshMessages();
                     }
                 });
-                etMessage.setText(null);
+                etMessage.setText(null);                **/
             }
         });
     }
@@ -163,14 +165,15 @@ public class ChatActivity extends AppCompatActivity {
 
 
 
-    public static void sendAnnouncement() {
+    public static void sendAnnouncement( String msg) {
 
 
-        HashMap<String, String> payload = new HashMap<>();
-        payload.put("customData", "launch");
-        payload.put("action", "launch");
-        payload.put("message", "launch");
-        ParseCloud.callFunctionInBackground("pushChannelTest", payload);
+        HashMap<String, String> chat = new HashMap<>();
+        chat.put("senderName", currentUser.getUsername());
+        chat.put("senderId", ParseInstallation.getCurrentInstallation().getInstallationId());
+        chat.put("message", msg);
+
+        ParseCloud.callFunctionInBackground("pushChannelTest", chat);
     }
 
 }
