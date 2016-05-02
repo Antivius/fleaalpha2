@@ -22,9 +22,9 @@ public class BaseApp extends Application {
         ParseObject.registerSubclass(Message.class);
 
         Parse.initialize(new Parse.Configuration.Builder(this)
-                .applicationId("myAppId") // should correspond to APP_ID env variable
+                .applicationId("base") // should correspond to APP_ID env variable
                 .addNetworkInterceptor(new ParseLogInterceptor())
-                .server("https://fd0e5215.ngrok.io/parse/").build());
+                .server("https://qrash.herokuapp.com/parse/").build());
 
         ParseInstallation.getCurrentInstallation().saveInBackground();
     }

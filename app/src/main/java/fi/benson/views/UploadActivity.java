@@ -9,10 +9,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,30 +34,32 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import fi.benson.R;
 import fi.benson.camera.ImageUtility;
 
-public class UploadActivity extends AppCompatActivity {
+public class UploadActivity extends AppCompatActivity{
 
-    EditText editText_title, editText_desc, editText_price;
-    Button submit;
-    private ImageView imageView;
-    private Point     mSize;
-    private Bitmap    bitmap;
+    private  EditText     editText_title, editText_desc, editText_price;
+    private  EditText     etPrice,etTitle,etDesc;
+    private  Button       submit,btnPrice,btnTitle,btnDesc;
+    private  LinearLayout lPrice,lTitle,lDesc;
+    private  ImageView    imageView;
+    private  Point        mSize;
+    private  Bitmap       bitmap;
     private  LinearLayout addresslLayout;
-    private  String imageUrl;
-    private  String title;
-    private  String desc;
-    private  String category = "General";
-    private  String condition = "Good";
-    private  String address = "my address 123";
-    private String sellerId;
-    private String sellerName;
-    private  String channel;
-    private  boolean sold = false;
-    private  double latitude = 60.45481499999999;
-    private  double longitude = 22.288123333333335;
+    private  String       imageUrl;
+    private  String       title;
+    private  String       desc;
+    private  Double       price;
+    private  String       category = "General";
+    private  String       condition = "Good";
+    private  String       address = "my address 123";
+    private  String       sellerId;
+    private  String       sellerName;
+    private  String       channel;
+    private  boolean      sold = false;
+    private  double       latitude = 60.45481499999999;
+    private  double       longitude = 22.288123333333335;
 
     private int i = -1;
     private ParseUser currentUser;
-
 
 
     @Override
@@ -71,8 +74,11 @@ public class UploadActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         initUi();
-        setCategoryAndCondionSpinners();
+
+
+      //  setCategoryAndCondionSpinners();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         if (fab != null) {
@@ -85,6 +91,12 @@ public class UploadActivity extends AppCompatActivity {
             });
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
 
     public void initUi(){
 
@@ -102,6 +114,114 @@ public class UploadActivity extends AppCompatActivity {
             imageView.setImageBitmap(bitmap);
         }
 
+
+        lPrice   = (LinearLayout) findViewById(R.id.upload_price_layout);
+        lTitle   = (LinearLayout) findViewById(R.id.upload_title_layout);
+        lDesc    = (LinearLayout) findViewById(R.id.upload_desc_layout);
+        etPrice  = (EditText) findViewById(R.id.et_upload_price);
+        etTitle  = (EditText) findViewById(R.id.et_uploat_title);
+        etDesc   = (EditText) findViewById(R.id.et_upload_desc);
+        btnPrice = (Button) findViewById(R.id.btnUploadPrice);
+        btnTitle = (Button) findViewById(R.id.btnUploadTitle);
+        btnDesc  = (Button) findViewById(R.id.btnUploadDesc);
+
+
+
+        // Edit text listeners
+        etPrice.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if(s.toString().trim().length()==0){
+                    btnPrice.setEnabled(false);
+                } else {
+                    btnPrice.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        etTitle.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().trim().length()==0){
+                    btnTitle.setEnabled(false);
+                } else {
+                    btnTitle.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        etDesc.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().trim().length()==0){
+                    btnDesc.setEnabled(false);
+                } else {
+                    btnDesc.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        etTitle.requestFocus();
+        etPrice.requestFocus();
+
+
+
+        btnPrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                price = Double.valueOf(etPrice.getText().toString());
+                lPrice.setVisibility(View.GONE);
+                lTitle.setVisibility(View.VISIBLE);
+            }
+        });
+
+        btnTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                title = etTitle.getText().toString();
+                lTitle.setVisibility(View.GONE);
+                lDesc.setVisibility(View.VISIBLE);
+            }
+        });
+
+        btnDesc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+        /*
+
         editText_desc  = (EditText) findViewById(R.id.et_desc);
         editText_title = (EditText) findViewById(R.id.et_title);
         editText_price = (EditText) findViewById(R.id.et_price);
@@ -117,7 +237,14 @@ public class UploadActivity extends AppCompatActivity {
                 uploadPost();
             }
         });
+
+        */
+
+
     }
+
+
+    /*
 
     //toogle the address layout visibility
     public void onShowAdvClicked(View view) {
@@ -134,7 +261,7 @@ public class UploadActivity extends AppCompatActivity {
                 break;
 
         }
-    }
+    } */
 
     public void setCategoryAndCondionSpinners() {
         //category spinner

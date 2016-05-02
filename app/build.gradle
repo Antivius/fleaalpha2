@@ -39,4 +39,5 @@ dependencies {
     compile 'co.dift.ui.swipetoaction:library:1.1'
     compile 'com.vstechlab.easyfonts:easyfonts:1.0.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.github.habibi07:ImgEffects:1.0.4'
 }

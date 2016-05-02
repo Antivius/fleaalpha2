@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.kgkg.imagevieweffects.ImageFrame;
+import com.kgkg.imagevieweffects.ImageMask;
+import com.kgkg.imagevieweffects.ImageTitle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +47,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         Uri uri = Uri.parse(post.getImageUrl());
         holder.draweeView.setImageURI(uri);
+        holder.imageTitle.setEffect(6);
+        holder.imageMask.setEffect(5);
 
     }
 
@@ -55,6 +60,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         //Setup Views
         public SimpleDraweeView draweeView;
+
+        public ImageFrame imageFrame;
+        public ImageTitle imageTitle;
+        public ImageMask imageMask;
+
+
 
         List<Posts> itemPosts = new ArrayList<Posts>();
         Context ctx;
@@ -69,6 +80,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
 
             draweeView = (SimpleDraweeView) itemView.findViewById(R.id.placeImage);
+
+            imageFrame = (ImageFrame) itemView.findViewById(R.id.myImageFrame);
+            imageTitle = (ImageTitle) itemView.findViewById(R.id.titleBlock);
+            imageMask = (ImageMask) itemView.findViewById(R.id.titleMask);
 
         }
 

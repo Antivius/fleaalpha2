@@ -10,6 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kgkg.imagevieweffects.ImageFrame;
+import com.kgkg.imagevieweffects.ImageMask;
+import com.kgkg.imagevieweffects.ImageTitle;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -39,10 +42,12 @@ public class Browse extends Fragment {
 
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.fragment_browse, container, false);
+
 
 
         recycler = (RecyclerView) rootView.findViewById(R.id.mainRecycler);

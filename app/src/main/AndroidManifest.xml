@@ -33,6 +33,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
+
         <service android:name="com.parse.PushService" />
 
         <receiver
@@ -84,6 +85,7 @@
         <activity
             android:name=".views.UploadActivity"
             android:label="@string/title_activity_upload"
+            android:windowSoftInputMode="stateAlwaysVisible"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".views.LoginActivity"

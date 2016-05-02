@@ -32,6 +32,7 @@
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax" />
 
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -42,15 +43,126 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_upload" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/upload_price_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="150dp"
+            android:orientation="vertical"
+            android:background="#95000000">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_upload_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Price"
+                android:textColorHint="@color/colorAccent"
+                android:textColor="@color/colorAccent"
+                android:inputType="numberSigned"
+                app:met_iconLeft="@drawable/username"
+                app:met_iconPadding="0dp"
+                app:met_maxCharacters="5" />
+
+
+
+            <Button
+                android:id="@+id/btnUploadPrice"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:enabled="false"
+                android:padding="16dp"
+                android:layout_margin="32dp"
+                android:text="Next" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/upload_title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="150dp"
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:background="#95000000">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_uploat_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Price"
+                android:textColor="@color/background"
+                android:inputType="textPersonName"
+                app:met_iconLeft="@drawable/username"
+                app:met_iconPadding="0dp"
+                app:met_maxCharacters="5" />
+
+
+            <Button
+                android:id="@+id/btnUploadTitle"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:enabled="false"
+                android:padding="16dp"
+                android:layout_margin="32dp"
+                android:text="Next" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/upload_desc_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="150dp"
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:background="#95000000">
+
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_upload_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Price"
+                android:inputType="textPersonName"
+                app:met_iconLeft="@drawable/username"
+                app:met_iconPadding="0dp"
+                app:met_maxCharacters="5" />
+
+
+
+            <Button
+                android:id="@+id/btnUploadDesc"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:enabled="false"
+                android:padding="16dp"
+                android:layout_margin="32dp"
+                android:text="Next" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
 
 </android.support.design.widget.CoordinatorLayout>

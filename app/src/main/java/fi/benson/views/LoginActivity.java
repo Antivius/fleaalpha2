@@ -133,6 +133,7 @@ public class LoginActivity extends AppCompatActivity {
         user.setPassword(passwd);
         user.setEmail(email);
 
+
         user.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {
                 if (e == null) {

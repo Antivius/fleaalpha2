@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fresco="http://schemas.android.com/tools">
 
 
@@ -19,11 +20,45 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/placeImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                fresco:placeholderImage="@drawable/my_drawable" />
+            <com.kgkg.imagevieweffects.ImageFrame
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/myImageFrame"
+                app:mTitleBlockPosition="top"
+                app:mImage="@drawable/hs">
+
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/placeImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    fresco:placeholderImage="@drawable/my_drawable" />
+
+                <com.kgkg.imagevieweffects.ImageMask
+                    android:id="@+id/titleMask"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:MaskEffect="slideLeft"
+                    app:mEffectDuration="1000"
+                    app:mMaskColor="#FF303F9F"
+                    app:mMaskOpacity="0.5"/>
+
+                <com.kgkg.imagevieweffects.ImageTitle
+                    android:id="@+id/titleBlock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lorem ipsum"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:background="#15A98E"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:padding="15dp"
+                    app:TitleEffect="ribbon"
+                    app:mEffectDuration="1000"
+                    app:mEffectDirection="left"/>
+            </com.kgkg.imagevieweffects.ImageFrame>
+
+
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
