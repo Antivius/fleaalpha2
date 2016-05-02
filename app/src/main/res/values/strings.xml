@@ -114,4 +114,17 @@
 
     <string name="title_activity_detail"></string>
     <string name="title_activity_chat">ChatActivity</string>
+
+    <!-- loading messages -->
+    <string name="loading_empty">Loading…</string>
+    <string name="loading_register">Sending registration request…</string>
+    <string name="loading_login">Logging in…</string>
+
+    <!-- info messages -->
+    <string name="info_registered_template">Registered. ObjectId: %s</string>
+    <string name="info_registered_success">Registered successfully</string>
+    <string name="info_logged_in">Logged in. ObjectId: %s</string>
+    <string name="info_registered">Registered. ObjectId: %s</string>
+    <string name="registration">Registering user</string>
+    <string name="facebook_app_id">519635568243793</string>
 </resources>

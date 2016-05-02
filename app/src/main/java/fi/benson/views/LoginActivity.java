@@ -1,5 +1,6 @@
 package fi.benson.views;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.backendless.Backendless;
+import com.backendless.BackendlessUser;
+import com.backendless.async.callback.AsyncCallback;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -21,6 +25,9 @@ import fi.benson.R;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final String APP_ID = "C9435C02-8205-26CC-FF63-3067244CAF00";
+    private static final String SECRET_KEY="D1A3A4A0-BD38-37CB-FF5E-D582B1E47600";
+
     private  EditText et_login_email, et_login_passwd;
     private  EditText et_sign_name,   et_sign_email,  et_sign_passwd;
     private  Button   btn_login,      btn_signup;
@@ -31,6 +38,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        String appVersion = "v1";
+        Backendless.initApp(this, APP_ID, SECRET_KEY, appVersion);
 
         initUi();
 
@@ -59,9 +69,18 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String _email  = et_login_email.getText().toString();
                 final String _passwd = et_login_passwd.getText().toString();
-                signIn(_email,_passwd);
+                //signIn(_email,_passwd);
+
+
+                    LoadingCallback<BackendlessUser> loginCallback = createLoginCallback();
+
+                    loginCallback.showLoading();
+                    loginUser(_email, _passwd, loginCallback);
+
             }
         });
+
+
 
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +92,29 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
+    public LoadingCallback<BackendlessUser> createLoginCallback()
+    {
+        return new LoadingCallback<BackendlessUser>( this, getString( R.string.loading_login ) )
+        {
+            @Override
+            public void handleResponse( BackendlessUser loggedInUser )
+            {
+                super.handleResponse(loggedInUser);
+                Toast.makeText( LoginActivity.this, String.format( getString( R.string.info_logged_in ), loggedInUser.getObjectId() ), Toast.LENGTH_LONG ).show();
+
+                Intent userActionIntent = new Intent( LoginActivity.this, MainActivity.class );
+                startActivity( userActionIntent );
+                finish();
+            }
+        };
+    }
+
+    public void loginUser( String email, String password, AsyncCallback<BackendlessUser> loginCallback )
+    {
+        Backendless.UserService.login(email, password, loginCallback);
+    }
+
 
 
 

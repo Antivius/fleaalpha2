@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="fi.benson">
+    package="fi.benson" >
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -32,13 +32,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:icon">
-
+        tools:replace="android:icon" >
         <service android:name="com.parse.PushService" />
 
         <receiver
             android:name=".customs.PushReceiver"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.parse.push.intent.RECEIVE" />
                 <action android:name="com.parse.push.intent.DELETE" />
@@ -47,7 +46,7 @@
         </receiver>
         <receiver
             android:name="com.parse.GcmBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND">
+            android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
@@ -71,7 +70,7 @@
         <activity
             android:name=".views.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -85,8 +84,8 @@
         <activity
             android:name=".views.UploadActivity"
             android:label="@string/title_activity_upload"
-            android:windowSoftInputMode="stateAlwaysVisible"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysVisible" />
         <activity
             android:name=".views.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -98,13 +97,12 @@
             android:name=".views.DetailActivity"
             android:label="@string/title_activity_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".views.ChatListActivity">
+        <activity android:name=".views.ChatListActivity" >
         </activity>
         <activity
             android:name=".views.ChatActivity"
-            android:theme="@style/Theme.AppCompat"
-            android:label="@string/title_activity_chat">
-
+            android:label="@string/title_activity_chat"
+            android:theme="@style/Theme.AppCompat" >
         </activity>
     </application>
 
